@@ -1,0 +1,9 @@
+doctype html
+html(lang=en)
+  head
+    title=title
+  body
+    h1="Most Popular"
+    div(style="display: flex; flex-direction: row; justify-content: center; align-items: center; height: 300px")
+      each emoji in emojis
+        span(style="font-size: 50px; margin: 3px;")= emoji
