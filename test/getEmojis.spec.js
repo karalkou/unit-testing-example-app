@@ -3,7 +3,9 @@ var assert = require("assert");
 
 describe("getEmojis", () => {
     it("should throw an error if result is not an array", () => {
-        assert.throws(getEmojis, /is not an array/);
+        const fetch = () => ":)";
+
+        assert.throws(() => getEmojis(fetch), /is not an array/);
     });
 
     it("should retun an array", () => {
