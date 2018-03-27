@@ -16,6 +16,18 @@ describe.only("hexToRgb", () => {
       });
     });
 
+    it("should always return the result of parse", (done) => {
+        sinon.stub(hexToRgb, "parse").returns({r: 0, g: 900, b: 100});
+  
+        hexToRgb.convert("#abc", (error, result) => {
+          expect(result).to.deep.equal({r: 0, g: 900, b: 100});
+  
+          hexToRgb.parse.restore();
+          done();
+        });
+  
+      });
+
     it("should return an error if the value is not a hex code", (done) => {
       hexToRgb.convert("blue", (error, result) => {
         expect(error).to.exist;
