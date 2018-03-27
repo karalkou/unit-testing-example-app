@@ -2,7 +2,7 @@ const getEmojis = require("../lib/getEmojis");
 var assert = require("assert");
 
 describe("getEmojis", () => {
-    it.only("should throw an error if result is not an array", (done) => {
+    it("should throw an error if result is not an array", (done) => {
         const notArray = () => {
             getEmojis(process.cwd() + "/test/fixtures/emoji-non-array.json");
         };

@@ -1,5 +1,5 @@
 let hexToRgb = require("../lib/hexToRgb");
-let assert = require("assert");
+let assert = require("chai").assert;
 
 describe("hexToRgb", () => {
     it("should return an error when value is not a hex code", (done) => {
