@@ -28,6 +28,18 @@ describe.only("hexToRgb", () => {
   
       });
 
+    it("should always pass a 6 item array to parse", (done) => {
+        const mock = sinon.mock(hexToRgb);
+        mock.expects("parse").twice().withExactArgs("000000".split(''));
+  
+        hexToRgb.convert("#000000", (error, result) => {
+          hexToRgb.convert("#000", (error, result) => {
+            mock.verify();
+            done();
+          });
+        });
+      });
+
     it("should return an error if the value is not a hex code", (done) => {
       hexToRgb.convert("blue", (error, result) => {
         expect(error).to.exist;
