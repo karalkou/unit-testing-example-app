@@ -22,4 +22,6 @@ describe("hexToRgb", () => {
             done();
         });
     });
+
+    it("should return rgb if passed an rgb value");
 });
