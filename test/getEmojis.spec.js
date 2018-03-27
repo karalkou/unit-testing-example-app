@@ -1,11 +1,33 @@
 const getEmojis = require("../lib/getEmojis");
 var assert = require("assert");
+var fs = require("fs");
+
+const configFile = process.cwd() + "/config.json";
+
+function writeConfig(config, callback) {
+    fs.writeFile(configFile, JSON.stringify(config), callback)
+}
 
 describe("getEmojis", () => {
-    it("should throw an error if result is not an array", () => {
-        const fetch = () => ":)";
+    let config = {};
 
-        assert.throws(() => getEmojis(fetch), /is not an array/);
+    before((done) => {
+        fs.readFile(configFile, (error, content) => {
+            config = JSON.parse(content.toString());
+            done();
+        });
+        
+    });
+
+    afterEach((done) => {
+        writeConfig(config, done);
+    });
+
+    it("should throw an error if result is not an array", (done) => {
+        writeConfig({ "emojis": ":)" }, () => {
+            assert.throws(getEmojis, /is not an array/);
+            done();
+        })
     });
 
     it("should retun an array", () => {
